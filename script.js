@@ -12,13 +12,10 @@ console.log(adaptive);
 
 
 console.log(screens.length);
-let str1 = 'Стоимость верстки экранов';
-let str2 = ' руб.';
-console.log(str1  + " " + screenPrice + str2);
 
-let str3 = 'Стоимость разработки сайта ';
-let str4 = ' руб.';
-console.log(str3  + " " + fullPrice + str4);
+console.log("Стоимость верстки экранов: "  +  screenPrice + " рублей");
+
+console.log("Стоимость разработки сайта: " + fullPrice + " рублей");
 
 console.log(screens.toLowerCase().split(","));
 console.log(fullPrice * (rollback/100));screenPrice
