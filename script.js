@@ -1,23 +1,23 @@
 'use strict';
 
-let answer = prompt("Как называется ваш проект?")
-let title = "Мой первый сайт"
-let answer2 = prompt("Какие типы экранов нужно разработать?")
-let screens = "Простые, Сложные, Интерактивные"
-let answer3 = +prompt("Сколько будет стоить данная работа?")
-let screenPrice = 10000;
-let answer4 = ("Нужен ли адаптив на сайте?")
-let adaptive = true;
+let title = prompt("Как называется ваш проект?")
+title = "Мой первый сайт"
+let screens = prompt("Какие типы экранов нужно разработать?")
+screens = "Простые, Сложные, Интерактивные"
+let screenPrice = +prompt("Сколько будет стоить данная работа?")
+screenPrice = 10000;
+let adaptive = ("Нужен ли адаптив на сайте?")
+adaptive = true;
 let service1 = prompt("Какой дополнительный тип услуги нужен?")
-let additionalService1 = "Настройка Яндекс Метрики"
-let answer5 = +prompt("Сколько это будет стоить?")
-let servicePrice1 = 5000;
+service1 = "Настройка Яндекс Метрики"
+let servicePrice1 = +prompt("Сколько это будет стоить?")
+servicePrice1 = 5000;
 let service2 = prompt("Какой дополнительный тип услуги нужен?")
-let additionalService2 = "Настройка SEO"
-let answer6 = +prompt("Сколько это будет стоить?")
-let servicePrice2 = 10000;
+service2 = "Настройка SEO"
+let servicePrice2 = +prompt("Сколько это будет стоить?")
+servicePrice2 = 10000;
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let rollback = 5;
+const rollback = 5;
 let servicePercentPrice = fullPrice - (fullPrice * (rollback / 100));
 console.log(Math.ceil(servicePercentPrice));
 
@@ -31,5 +31,8 @@ if(fullPrice >= 30000) {
     console.log("Ошибка");
 }
  
+console.log("Стоимость верстки экранов: "  +  screenPrice + " рублей");
+
+console.log("Стоимость разработки сайта: " + fullPrice + " рублей");
 
 
