@@ -23,6 +23,21 @@ const appData = {
     isNumber: function(num) {
         return !isNaN(parseFloat(num)) && isFinite(num)
     },
+
+    check: function() {
+        let string = "Hello123";
+            let regex = /\d/;
+            let matches = string.match(regex);
+        for (let i = 0; i < str.length; i++) {
+            if (!isNaN(Number(str[i]))) {
+                return true;
+            } if (matches === true) {
+                console.log("В строке есть цифры");
+            } else {
+                console.log("В строке нет цифр");
+            }
+       }
+    },
     asking: function () {
         appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки")
     
