@@ -74,16 +74,16 @@ const appData = {
             } else {
                 return "Ошибка"
             }
-        }
+        },
         
         logger: function () {
             console.log(appData.fullPrice);
             console.log(appData.servicePercentPrice);
-            for(let key in obj) {
-                console.log("obj." + key + " = " + obj[key]);
+            for(let key in appData) {
+                console.log("appData." + key + " = " + appData[key]);
         }
+    }            
+}    
+  
 
-    }
-}  
-      
 appData.start()
