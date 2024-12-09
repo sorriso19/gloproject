@@ -1,0 +1,16 @@
+"use strict";
+
+const title = document.getElementsByTagName('h1')
+const resetButton = document.getElementById('reset')
+const startButton = document.getElementById('start')
+const screenButton = document.querySelector('screen-btn')
+const controlsCheckBox1 = document.querySelectorAll('.other-items number')
+const controlsCheckBox2 = document.querySelectorAll('.other-items percent')
+const inputRange = document.querySelector('rollback > range')
+const span = document.querySelector('rollback > range-value')
+const inputTotal = document.getElementById('total')
+const inputCount = document.getElementById('total-count')
+const inputCountOther = document.getElementById('total-count-other')
+const inputFullCount = document.getElementById('total-full-count')
+const inputRollbackCount = document.getElementById('total-count-rollback')
+let screens = document.querySelectorAll('.screen')
