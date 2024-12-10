@@ -1,34 +1,41 @@
 "use strict";
 
 const body = document.querySelector('.body')
-const books = document.querySelector('.books')
-const elems = document.querySelectorAll('.book')
+const books = document.querySelectorAll('.book')
 const ad = document.querySelector('.adv')
-const lists = document.querySelector('ul')
-const heading = document.querySelectorAll('h2')
-const book6 = document.querySelectorAll('.book')
+const listItems = document.querySelectorAll('li')
+const title = books[4].querySelector('a')
+const newListItems = books[2].querySelectorAll('li')
 
-const links = document.querySelectorAll('a')
-let bookList, node
+title.textContent = "Книга 3. this и Прототипы Объектов";
+
+listItems[7].after(listItems[2])
+listItems[3].after(listItems[6])
+listItems[6].after(listItems[8])
+listItems[2].before(listItems[9])
+
+listItems[43].after(listItems[45])
+listItems[52].before(listItems[48])
+listItems[48].before(listItems[50])
+listItems[49].before(listItems[55])
+listItems[54].before(listItems[51])
 
 
 
-
-
-
-elems[2].before(elems[0])
-elems[5].after(elems[2])
-elems[5].before(elems[3])
+books[2].before(books[0])
+books[5].after(books[2])
+books[5].before(books[3])
 
 document.body.style.backgroundImage = "url(./image/adv.jpg)";
-
+ 
 ad.remove()
 
-node = bookList[4].querySelector("a")
-node.innerText = node.innerText.replace('Пропопипы', 'Прототипы')
+const newListItem = document.createElement('li')
+newListItem.textContent = 'Глава 8: за пределами ES6'
+books[2].insertAdjacentHTML('beforeend', '<li>Глава 8: За пределами ES6</li>')
+books[2].append(newListItems[9])
 
 
-const newElem = document.createElement('li')
-newElem.textContent = 'Глава 8: за пределами ES6'
-elems[2].classList.add('book6')
-bookList[2].querySelector('ul').lastElementChild.insertAdjacentHTML('beforeend', '<li>Глава 8: За пределами ES6</li>')
+console.log(listItems);
+console.log(books);
+console.log(newListItems);
