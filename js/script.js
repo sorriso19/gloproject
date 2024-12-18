@@ -4,6 +4,8 @@ const title = document.getElementsByTagName('h1')[0]
 const screenButton = document.querySelector('.screen-btn')
 const otherItemsNumber = document.querySelectorAll('.other-items.number')
 const otherItemsPercent = document.querySelectorAll('.other-items.percent')
+const screenTypes = document.getElementsByClassName('main-controls__select')
+const screenCount = document.getElementsByClassName('main-controls__input')
 
 const inputRange = document.querySelector('.rollback input')
 const inputRangeValue = document.querySelector('.rollback .range-value')
@@ -18,12 +20,16 @@ const inputCountOther = document.getElementsByClassName('total-input')[2]
 const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
 
+
 let screens = document.querySelectorAll('.screen')
+
+
+
 
 const appData = {
     title: '',
     screens: [],
-    screenPrice: 0 ,
+    screenPrice: 0 , 
     adaptive: true,
     rollback: 5,
     servicePricesPercent: 0,
@@ -34,9 +40,17 @@ const appData = {
     servicesNumber: {},
     init: function() {
         appData.addTitle()
+        
         startButton.addEventListener('click', appData.start)
         screenButton.addEventListener('click', appData.addScreenBlock)
+        inputRange.addEventListener('input', appData.changeSpan)
+        screenButton.addEventListener('input', appData.blockButton)
+
     },
+    changeSpan: function(event) {
+        inputRangeValue.textContent = event.target.value
+    },
+        
     addTitle: function() {
         document.title = title.textContent
     },
@@ -45,7 +59,8 @@ const appData = {
         appData.addServices()
        
         appData.addPrices()
-       
+        appData.changeSpan()
+        appData.blockButton()
         // appData.getServicePercentPrice()
        
 
@@ -57,6 +72,7 @@ const appData = {
         total.value = appData.screenPrice
         inputCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
         inputFullCount.value = appData.fullPrice
+        span.value = appData.changeSpan
     },
     addScreens: function() {
         screens = document.querySelectorAll('.screen')
@@ -109,6 +125,7 @@ const appData = {
       
        screens[screens.length - 1].after(cloneScreen)
     },
+    
 
     check: function() {
         let string = "Hello123";
@@ -139,22 +156,18 @@ const appData = {
 
         appData.fullPrice = +appData.screenPrice + appData.servicePricesPercent + appData.servicePricesNumber
     },
+    blockButton: function() {
+        if (screenTypes.value == "" && screenCount.value == "") {
+            screenButton.disabled = true;
+        } else {
+            screenButton.disabled = false;
+        }
+    },
     
     getServicePercentPrice: function () {
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
     },
-    
-    getRollbackMessage: function (price) {
-        if (price >= 30000) {
-            return "Даем скидку в 10%"
-        } else if (price >= 15000 && price < 30000) {
-            return "Даем скидку в 5%"
-        } else if (price >= 0 && price < 15000) {
-            return "Скидка не предусмотрена"
-        } else {
-            return "Ошибка"
-        }
-    },
+        
     logger: function () {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
