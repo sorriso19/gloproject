@@ -45,12 +45,18 @@ const appData = {
         appData.addServices()
        
         appData.addPrices()
-        // appData.getFullPrice()
+       
         // appData.getServicePercentPrice()
        
 
         // appData.logger()
-        console.log(appData);
+       
+        appData.showResult()
+    },
+    showResult: function() {
+        total.value = appData.screenPrice
+        inputCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
+        inputFullCount.value = appData.fullPrice
     },
     addScreens: function() {
         screens = document.querySelectorAll('.screen')
@@ -130,16 +136,14 @@ const appData = {
         for(let key in appData.servicesPercent) {
             appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100)
         }
+
+        appData.fullPrice = +appData.screenPrice + appData.servicePricesPercent + appData.servicePricesNumber
     },
-    getFullPrice: function () {
-        appData.fullPrice = +appData.screenPrice + appData.allServicePrices
-    },
+    
     getServicePercentPrice: function () {
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
     },
-    getTitle: function () {
-        return appData.title[0].toUpperCase() + appData.title.trim().substring(1).toLowerCase()
-    },
+    
     getRollbackMessage: function (price) {
         if (price >= 30000) {
             return "Даем скидку в 10%"
