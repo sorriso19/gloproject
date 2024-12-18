@@ -78,9 +78,9 @@ const appData = {
     addServices: function() {
         otherItemsPercent.forEach(function(item) {
             console.log(item);
-            const check = item.querySelector('input[type=checkbox')
+            const check = item.querySelector('input[type=checkbox]')
             const label = item.querySelector('label')
-            const input = item.querySelector('input[type=text')
+            const input = item.querySelector('input[type=text]')
 
             console.log(check);
             console.log(label);
