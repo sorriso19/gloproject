@@ -18,7 +18,7 @@ const inputCount = document.getElementsByClassName('total-input')[1]
 const inputCountOther = document.getElementsByClassName('total-input')[2]
 const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
-const totalCount = document.querySelectorAll('total-count')
+const totalCount = document.querySelectorAll('main-controls__input')
 
 
 let screens = document.querySelectorAll('.screen')
@@ -84,6 +84,7 @@ const appData = {
             const select = screen.querySelector('select')
             const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
+            const totalCount = document.querySelectorAll('main-controls__input')
 
             appData.screens.push({
                 id: index,
