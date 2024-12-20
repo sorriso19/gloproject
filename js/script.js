@@ -76,9 +76,10 @@ const appData = {
     },
 
     addScreens: function () {
-        screens = document.querySelectorAll('.screen')
+        screens = document.querySbelectorAll('.screen')
         appData.screens = []
-        
+        let lotalCount = 0
+
         screens.forEach(function (screen, index) {
             const select = screen.querySelector('select')
             const input = screen.querySelector('input')
@@ -160,7 +161,7 @@ const appData = {
 
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
 
-        appData.totalCount= appData.screens.reduce((sumlj, screen) => sum + screen.count, 0)
+        appData.totalCount = appData.screens.reduce((sum, screen) => sum + screen.count, 0)
 
     },
     rangeChange: function (event) {
