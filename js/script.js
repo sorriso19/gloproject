@@ -18,8 +18,7 @@ const inputCount = document.getElementsByClassName('total-input')[1]
 const inputCountOther = document.getElementsByClassName('total-input')[2]
 const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
-const totalCount = document.querySelectorAll('main-controls__input')
-
+const totalCount = document.querySelectorAll('main-controls__input[type=text]')
 
 let screens = document.querySelectorAll('.screen')
 
@@ -42,7 +41,6 @@ const appData = {
     init: function () {
         appData.addTitle()
         appData.start()
-        // appData.changeSpan()
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
@@ -72,25 +70,24 @@ const appData = {
         inputFullCount.value = appData.fullPrice
         inputRangeValue.value = appData.changeSpan
         inputRollbackCount.value = appData.servicePercentPrice
-        totalCount.value = appData.screens
+        inputCount.value = appData.totalCount
     },
 
     addScreens: function () {
         screens = document.querySelectorAll('.screen')
         appData.screens = []
-        let lotalCount = 0
+        
 
         screens.forEach(function (screen, index) {
             const select = screen.querySelector('select')
             const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
-            const totalCount = document.querySelectorAll('main-controls__input')
-
+         
             appData.screens.push({
                 id: index,
                 name: selectName,
                 price: +select.value * +input.value,
-                count: totalCount
+                count: +input.value
             })
         })
         // console.log(appData.screens);
@@ -134,15 +131,12 @@ const appData = {
     check: function () {
         let string = "Hello123";
         let regex = /\d/;
-        let matches = string.match(regex);
-        for (let i = 0; i < str.length; i++) {
-            if (!isNaN(Number(str[i]))) {
-                return true;
-            } if (matches === true) {
-                console.log("В строке есть цифры");
-            } else {
-                console.log("В строке нет цифр");
-            }
+        if (regex.test(string)) {
+            console.log("В строке есть цифры");
+            return true;
+        } else {
+            console.log("В строке нет цифр");
+            return false;
         }
     },
     addPrices: function () {
@@ -162,29 +156,31 @@ const appData = {
 
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
 
-        totalCount.value = appData.screens.reduce((sum, screen) => sum + screen.count, 0)
-
+        appData.totalCount = appData.screens.reduce((sum, screen) => sum + screen.count, 0);
+            console.log(appData.totalCount);
     },
     rangeChange: function (event) {
         inputRangeValue.textContent = event.target.value
     },
     blockButton: function () {
-
-        if (screenTypes == "" && screenCount == "") {
-            startButton.addEventListener('click', function (event) {
+        const isScreenTypesEmpty = Array.from(screenTypes).some(select => select.value === "");
+        const isScreenCountEmpty = Array.from(screenCount).some(input => input.value === "");
+        
+        if (isScreenTypesEmpty || isScreenCountEmpty) {
+            startButton.addEventListener('click', function (e) {
                 e.preventDefault();
-            }, false);
-
+                console.log("Некоторые поля не заполнены.");
+            }, { once: true });
         }
-
     },
 
     logger: function () {
-        // console.log(appData.fullPrice);
-        // console.log(appData.servicePercentPrice);
-        // console.log(appData.screens);
+        console.log(appData.fullPrice);
+        console.log(appData.servicePercentPrice);
+        console.log(appData.screens);
 
     }
+
 }
 
 appData.init()
