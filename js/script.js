@@ -19,6 +19,8 @@ const inputCountOther = document.getElementsByClassName('total-input')[2]
 const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
 const totalCount = document.querySelectorAll('main-controls__input[type=text]')
+const inputs = document.querySelectorAll('.main-controls__item screen')
+
 
 let screens = document.querySelectorAll('.screen')
 
@@ -53,9 +55,9 @@ const appData = {
     start: function () {
         appData.addScreens()
         appData.addServices()
-        appData.blockButton()
+     
         appData.addPrices()
-
+        // appData.blockButton()
 
         // appData.getServicePercentPrice()
 
@@ -156,24 +158,43 @@ const appData = {
 
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
 
-        appData.totalCount = appData.screens.reduce((sum, screen) => sum + screen.count, 0);
+        appData.totalCount = appData.screens.reduce((sum, screen) => sum + screen.count, 0)
             console.log(appData.totalCount);
     },
     rangeChange: function (event) {
         inputRangeValue.textContent = event.target.value
     },
-    blockButton: function () {
-        const isScreenTypesEmpty = Array.from(screenTypes).some(select => select.value === "");
-        const isScreenCountEmpty = Array.from(screenCount).some(input => input.value === "");
-        
-        if (isScreenTypesEmpty || isScreenCountEmpty) {
-            startButton.addEventListener('click', function (e) {
-                e.preventDefault();
-                console.log("Некоторые поля не заполнены.");
-            }, { once: true });
-        }
-    },
+    
+    blockButton: function() {
+                    
+            const obj = {
+            invalid: false,
+            checkFields() {
+               obj.invalid = false
 
+                inputs.forEach((inputs) => {
+                  const select = inputs.querySelector('select[name=views-select]')
+                //   const input = inputs.querySelector('input[type=text]')
+                    if (inputs.value === '' && select.value === '') {
+                        obj.invalid = true
+                    }
+                })
+
+            },
+                  
+                start() {
+                    obj.checkFields()
+                    if(!obj.invalid) {
+                        console.log('start');
+                    }
+                }
+            }
+        
+        startButton.addEventListener('click',() => {
+            obj.start()
+        })
+
+    },
     logger: function () {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
