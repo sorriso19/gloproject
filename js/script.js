@@ -19,14 +19,21 @@ const inputCountOther = document.getElementsByClassName('total-input')[2]
 const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
 const totalCount = document.querySelectorAll('main-controls__input[type=text]')
-const inputs = document.querySelectorAll('.main-controls__item screen')
+
+let inputs = document.querySelectorAll('.screen')
+let input = document.querySelectorAll('.screen input')
+let select = document.querySelectorAll('.screen select')
 
 
 let screens = document.querySelectorAll('.screen')
+console.log ('screens: ', screens)
 
 console.log(inputRange);
 console.log(inputRangeValue);
 
+console.log(inputs);
+console.log(select);
+console.log(input);
 
 const appData = {
     title: '',
@@ -166,16 +173,19 @@ const appData = {
     },
     
     blockButton: function() {
-                    
+        
+        inputs = document.querySelectorAll('.screen')
+        input = document.querySelectorAll('.screen input')
+        select = document.querySelectorAll('.screen select')
+
             const obj = {
             invalid: false,
             checkFields() {
                obj.invalid = false
 
-                inputs.forEach((inputs) => {
-                  const select = inputs.querySelector('select[name=views-select]')
-                //   const input = inputs.querySelector('input[type=text]')
-                    if (inputs.value === '' && select.value === '') {
+                inputs.forEach((input, select) => {
+                           
+                    if (input.value === '' || select.valueOf === '') {
                         obj.invalid = true
                     }
                 })
