@@ -53,7 +53,7 @@ const appData = {
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
-
+       
     },
 
     addTitle: function () {
@@ -66,7 +66,7 @@ const appData = {
         appData.addPrices()
         // appData.blockButton()
 
-        // appData.getServicePercentPrice()
+      
 
 
         // appData.logger()
@@ -183,9 +183,15 @@ const appData = {
             checkFields() {
                obj.invalid = false
 
-                inputs.forEach((input, select) => {
+                inputs.forEach((input) => {
                            
-                    if (input.value === '' || select.valueOf === '') {
+                    if (input.value === '') {
+                        obj.invalid = true
+                    }
+                })
+
+                select.forEach((item) => {
+                    if(item.value === '') {
                         obj.invalid = true
                     }
                 })
@@ -194,7 +200,7 @@ const appData = {
                   
                 start() {
                     obj.checkFields()
-                    if(!obj.invalid) {
+                    if(obj.invalid) {
                         console.log('start');
                     }
                 }
