@@ -50,6 +50,7 @@ const appData = {
     init: function () {
         appData.addTitle()
         appData.start()
+        
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
@@ -62,12 +63,8 @@ const appData = {
     start: function () {
         appData.addScreens()
         appData.addServices()
-     
         appData.addPrices()
-        // appData.blockButton()
-
-      
-
+        appData.blockButton()
 
         // appData.logger()
 
@@ -200,8 +197,8 @@ const appData = {
                   
                 start() {
                     obj.checkFields()
-                    if(obj.invalid) {
-                        console.log('start');
+                    if(!obj.invalid) {
+                        appData.addPrices()
                     }
                 }
             }
