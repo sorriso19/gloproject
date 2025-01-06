@@ -50,7 +50,7 @@ const appData = {
     init: function () {
         appData.addTitle()
         appData.start()
-        
+     
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
@@ -68,7 +68,6 @@ const appData = {
 
         // appData.logger()
 
-        appData.showResult()
     },
     showResult: function () {
         total.value = appData.screenPrice
@@ -199,20 +198,23 @@ const appData = {
                     obj.checkFields()
                     if(!obj.invalid) {
                         appData.addPrices()
-                    }
+                        appData.showResult()
                 }
+                          
             }
-        
+                              
+        }
+                
         startButton.addEventListener('click',() => {
             obj.start()
+            
         })
-
     },
     logger: function () {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
         console.log(appData.screens);
-
+        
     }
 
 }
