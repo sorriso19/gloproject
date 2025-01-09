@@ -26,14 +26,14 @@ let select = document.querySelectorAll('.screen select')
 
 
 let screens = document.querySelectorAll('.screen')
-console.log ('screens: ', screens)
+// console.log ('screens: ', screens)
 
-console.log(inputRange);
-console.log(inputRangeValue);
+// console.log(inputRange);
+// console.log(inputRangeValue);
 
-console.log(inputs);
-console.log(select);
-console.log(input);
+// console.log(inputs);
+// console.log(select);
+// console.log(input);
 
 const appData = {
     title: '',
@@ -54,7 +54,7 @@ const appData = {
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
-       
+     
     },
 
     addTitle: function () {
@@ -65,7 +65,9 @@ const appData = {
         appData.addServices()
         appData.addPrices()
         appData.blockButton()
-
+        appData.showResult() 
+       
+       
         // appData.logger()
 
     },
@@ -196,20 +198,24 @@ const appData = {
                   
                 start() {
                     obj.checkFields()
+                                     
                     if(!obj.invalid) {
                         appData.addPrices()
-                        appData.showResult()
+                       
                 }
-                          
-            }
-                              
-        }
+              
                 
+            }
+                         
+        }
+           
         startButton.addEventListener('click',() => {
             obj.start()
-            
+              
         })
     },
+   
+
     logger: function () {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
@@ -218,5 +224,6 @@ const appData = {
     }
 
 }
+
 
 appData.init()
