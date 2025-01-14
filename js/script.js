@@ -20,20 +20,15 @@ const inputFullCount = document.getElementsByClassName('total-input')[3]
 const inputRollbackCount = document.getElementsByClassName('total-input')[4]
 const totalCount = document.querySelectorAll('main-controls__input[type=text]')
 
-let select = document.querySelector('.main-controls__select')
-let screenInput = document.getElementsByClassName('.main-controls__input')
+const select = document.querySelectorAll('.screen select')
+const field =  document.querySelectorAll('.screen input')
 let screens = document.querySelectorAll('.screen')
 
 console.log(select);
-console.log(screens);
-console.log(screenInput);
+console.log(field);
 
-// console.log ('screens: ', screens)
 
-// console.log(inputRange);
-// console.log(inputRangeValue);
 
-// console.log();
 
 
 const appData = {
@@ -51,7 +46,7 @@ const appData = {
     init: function () {
         appData.addTitle()
         appData.start()
-     
+      
         startButton.addEventListener('click', appData.start)
         inputRange.addEventListener('input', appData.rangeChange)
         screenButton.addEventListener('click', appData.addScreenBlock)
@@ -66,7 +61,8 @@ const appData = {
         appData.addServices()
         appData.addPrices()
         appData.blockButton()
-        // appData.showResult() 
+        appData.showResult() 
+       
        
        
         // appData.logger()
@@ -173,18 +169,18 @@ const appData = {
     
     blockButton: function() {
        
-                  
-
-            const obj = {
+        
+        const obj = {
             invalid: false,
             checkFields() {
                obj.invalid = false
 
-                screens.forEach((screenInput) => {
+                screens.forEach((field) => {
                            
-                    if (screenInput.value === '') {
+                    if (field.value === '') {
                         obj.invalid = true
                     }
+               
                 })
 
                 screens.forEach((select) => {
@@ -192,8 +188,10 @@ const appData = {
                     if(select === '') {
                         obj.invalid = true
                     }
+                    
                 })
 
+                
             },
                   
                 start() {
@@ -201,7 +199,7 @@ const appData = {
                                      
                     if(!obj.invalid) {
                     appData.start()
-                    appData.showResult()
+                    
                        
                 }
               
@@ -215,7 +213,6 @@ const appData = {
             
         })
     },
-   
 
     logger: function () {
         console.log(appData.fullPrice);
@@ -224,7 +221,6 @@ const appData = {
         
     }
 
-}
-
+}    
 
 appData.init()
