@@ -56,18 +56,8 @@ const appData = {
     addTitle: function () {
         document.title = title.textContent
     },
-    start: function () {
-        appData.addScreens()
-        appData.addServices()
-        appData.addPrices()
-        appData.blockButton()
-        appData.showResult() 
-       
-       
-       
-        // appData.logger()
-
-    },
+        
+    
     showResult: function () {
         total.value = appData.screenPrice
         inputCountOther.value = appData.servicePricesNumber + appData.servicePricesPercent
@@ -84,8 +74,14 @@ const appData = {
 
         screens.forEach(function (screen, index) {
             const select = screen.querySelector('select')
-            const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
+            const input = screen.querySelector("input");
+
+            if (selectName == "Тип экранов" || +input.value == 0){
+                appData.isError = true;
+            } else {
+                appData.isError = false;
+        }
          
             appData.screens.push({
                 id: index,
@@ -98,28 +94,24 @@ const appData = {
     },
     addServices: function () {
         otherItemsPercent.forEach(function (item) {
-            // console.log(item);
+         
             const check = item.querySelector('input[type=checkbox]')
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
 
-            // console.log(check);
-            // console.log(label);
-            // console.log(input);
+       
             if (check.checked) {
                 appData.servicesPercent[label.textContent] = +input.value
             }
         })
 
         otherItemsNumber.forEach(function (item) {
-            // console.log(item);
+           
             const check = item.querySelector('input[type=checkbox]')
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
 
-            // console.log(check);
-            // console.log(label);
-            // console.log(input);
+           
             if (check.checked) {
                 appData.servicesNumber[label.textContent] = +input.value
             }
@@ -167,60 +159,32 @@ const appData = {
         inputRangeValue.textContent = event.target.value
     },
     
-    blockButton: function() {
-       
-        
-        const obj = {
-            invalid: false,
-            checkFields() {
-               obj.invalid = false
-
-                screens.forEach((field) => {
-                           
-                    if (field.value === '') {
-                        obj.invalid = true
-                    }
-               
-                })
-
-                screens.forEach((select) => {
-                  
-                    if(select === '') {
-                        obj.invalid = true
-                    }
-                    
-                })
-
-                
-            },
-                  
-                start() {
-                    obj.checkFields()
-                                     
-                    if(!obj.invalid) {
-                    appData.start()
-                    
-                       
-                }
-              
-                
-            }
-                         
-        }
-           
-        startButton.addEventListener('click',() => {
-            obj.start()
-            
-        })
-    },
-
     logger: function () {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
         console.log(appData.screens);
         
-    }
+    },
 
-}    
+
+
+start: function () {
+    
+    appData.addScreens();
+    if (appData.isError) {
+      alert("Поля Тип экранов и Количество не могут быть пустыми!");
+      console.log(appData.isError);
+    } else {
+    console.log("no error");
+    appData.addServices();
+    appData.addPrices();
+    appData.showResult();
+    }
+    console.log(appData);
+
+  }
+}
+  
+
 
 appData.init()
