@@ -43,12 +43,12 @@ const appData = {
     servicePercentPrice: 0,
     servicesPercent: {},
     servicesNumber: {},
+    isError: false,
     init: function () {
         this.addTitle()
-        this.start()
-      
+              
         startButton.addEventListener('click', this.start.bind(appData))
-        inputRange.addEventListener('input', this.rangeChange.bind(appData))
+        inputRange.addEventListener('input',  this.addRangeChange.bind(appData))
         screenButton.addEventListener('click', this.addScreenBlock.bind(appData))
      
     },
@@ -140,12 +140,12 @@ const appData = {
             this.screenPrice += +screen.price
         }
 
-        for (let key in appData.servicesNumber) {
+        for (let key in this.servicesNumber) {
             this.servicePricesNumber += this.servicesNumber[key]
         }
 
-        for (let key in appData.servicesPercent) {
-            this.servicePricesPercent += appData.screenPrice * (this.servicesPercent[key] / 100)
+        for (let key in this.servicesPercent) {
+            this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100)
         }
 
         this.fullPrice = +this.screenPrice + this.servicePricesPercent + this.servicePricesNumber
@@ -155,18 +155,18 @@ const appData = {
         this.totalCount = this.screens.reduce((sum, screen) => sum + screen.count, 0)
             console.log(this.totalCount);
     },
-    rangeChange: function (event) {
+
+    addRangeChange: function (event) {
         inputRangeValue.textContent = event.target.value
+        this.rollback = event.target.value;
     },
     
-    logger: function () {
-        console.log(this.fullPrice);
-        console.log(this.servicePercentPrice);
-        console.log(this.screens);
+    // logger: function () {
+    //     console.log(this.fullPrice);
+    //     console.log(this.servicePercentPrice);
+    //     console.log(this.screens);
         
-    },
-
-
+    // },
 
 start: function () {
     
@@ -174,15 +174,13 @@ start: function () {
     if (this.isError) {
       alert("Поля Тип экранов и Количество не могут быть пустыми!");
       console.log(this.isError);
-    } else {
+        } else {
     console.log("no error");
     this.addServices();
     this.addPrices();
     this.showResult();
-    }
-    
-
-  }
+        }
+    },
 }
   
 
