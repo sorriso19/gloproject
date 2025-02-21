@@ -42,10 +42,10 @@ const appData = {
     init: function () {
         this.addTitle()
               
-        startButton.addEventListener('click', this.start.bind(appData))
-        resetButton.addEventListener('click', this.reset.bind(appData))
-        inputRange.addEventListener('input',  this.rangeChange.bind(appData))
-        screenButton.addEventListener('click', this.addScreenBlock.bind(appData))
+        startButton.addEventListener('click', appData.start.bind(this))
+        resetButton.addEventListener('click', appData.reset.bind(this))
+        inputRange.addEventListener('input',  appData.rangeChange.bind(this))
+        screenButton.addEventListener('click', appData.addScreenBlock.bind(this))
      
     },
 
@@ -84,7 +84,7 @@ const appData = {
             });
 
             this.screens.forEach((item) => {
-                inputCount.value = +inputCount.value +item.count
+                inputCount.value =  this.screens.reduce((sum, screen) => sum + screen.count, 0)
             });
         });
        
@@ -236,5 +236,3 @@ start: function () {
 }
  
 appData.init()
-
-
