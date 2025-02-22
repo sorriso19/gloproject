@@ -42,10 +42,10 @@ const appData = {
     init: function () {
         this.addTitle()
               
-        startButton.addEventListener('click', appData.start.bind(this))
-        resetButton.addEventListener('click', appData.reset.bind(this))
-        inputRange.addEventListener('input',  appData.rangeChange.bind(this))
-        screenButton.addEventListener('click', appData.addScreenBlock.bind(this))
+        startButton.addEventListener('click', this.start.bind(this))
+        resetButton.addEventListener('click', this.reset.bind(this))
+        inputRange.addEventListener('input',  this.rangeChange.bind(this))
+        screenButton.addEventListener('click', this.addScreenBlock.bind(this))
      
     },
 
